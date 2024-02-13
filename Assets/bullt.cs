@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class bullt : MonoBehaviour
 {
+    public GameObject bull;
     public float bulletSpeed = 0.1f;
+
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        Destroy(gameObject, 1.0f);
+    }
+
     void Start()
     {
         

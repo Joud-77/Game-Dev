@@ -6,14 +6,28 @@ public class Gun : MonoBehaviour
 {
     public Vector3 bulletSpawnPoint;
     public GameObject bulletPrefab;
-    
+
 
     void Update()
     {
+
+        //invoke repeating 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var bullet = Instantiate(bulletPrefab, bulletSpawnPoint, new Quaternion());
-           Destroy(bullet,1.0f);
+            Spp();
+            InvokeRepeating("Spp", 1.0f, 1.0f);
+        }
+        //invoke cancel 
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            CancelInvoke();
+        }
+        
+    }
+
+    //methoud for bullets
+    void Spp()
+        {
+            Instantiate(bulletPrefab, bulletSpawnPoint, new Quaternion());
         }
     }
-}
