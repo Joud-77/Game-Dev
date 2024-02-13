@@ -15,7 +15,7 @@ public class Gun : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Spp();
-            InvokeRepeating("Spp", 1.0f, 1.0f);
+            InvokeRepeating("Spp", 0.0f, 1.0f);
         }
         //invoke cancel 
         if (Input.GetKeyUp(KeyCode.Space))
