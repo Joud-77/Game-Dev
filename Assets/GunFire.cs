@@ -5,7 +5,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public Vector3 bulletSpawnPoint;
-    public GameObject bulletPrefab;
+    [SerializeField]private GameObject bulletPrefab;
 
 
     void Update()
@@ -15,7 +15,7 @@ public class Gun : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Spp();
-            InvokeRepeating("Spp", 0.0f, 1.0f);
+            InvokeRepeating("Spp", 0.0f, 0.5f);
         }
         //invoke cancel 
         if (Input.GetKeyUp(KeyCode.Space))
@@ -28,6 +28,6 @@ public class Gun : MonoBehaviour
     //methoud for bullets
     void Spp()
         {
-            Instantiate(bulletPrefab, bulletSpawnPoint, new Quaternion());
+            Instantiate(bulletPrefab, transform.position ,  Quaternion.identity);
         }
     }
