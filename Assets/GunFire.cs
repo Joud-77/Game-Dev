@@ -30,4 +30,5 @@ public class Gun : MonoBehaviour
         {
             Instantiate(bulletPrefab, transform.position ,  Quaternion.identity);
         }
+       
     }
