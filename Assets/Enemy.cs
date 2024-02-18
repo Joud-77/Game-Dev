@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
 
         GameObject bulletObj=Instantiate(enemyBullet,spawnPoint.transform.position,spawnPoint.transform.rotation)as GameObject;
         Rigidbody bulletRig = bulletObj.GetComponent<Rigidbody>();
-        bulletRig.AddForce(bulletRig.transform.forward * enemyspeed);
+        bulletRig.AddForce(-bulletRig.transform.forward * 20, ForceMode.Impulse);
         Destroy(bulletObj, 2f);
     }
     public void LookAtPlayer()

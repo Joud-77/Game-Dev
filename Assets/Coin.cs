@@ -5,15 +5,20 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-   private int coin = 0;
-    public TextMeshProUGUI coinText;
+    //this refreance for the counter
+    private Counter m_counter;
+
+    void Awake()
+    {
+        m_counter = FindObjectOfType<Counter>();
+    }
+
    private void OnCollisionEnter(Collision col)
    {
        if(col.gameObject.tag=="Player")
        {
-            coin++;
-            coinText.text="coins:"+ coin.ToString();
-            Debug.Log(coin);
+        //and this to call the counter and destroy the items .
+            m_counter.Count();
             Destroy(gameObject);
             
        } 
