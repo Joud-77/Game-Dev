@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements.InputSystem;
 
 public class Amoving : MonoBehaviour
 {
+
     [SerializeField] float JumpForce = 10;
     public Rigidbody jm;
     //rigid body viloctiy 
@@ -13,8 +15,6 @@ public class Amoving : MonoBehaviour
     Vector3 right = new Vector3(0.1f, 0);
     Vector3 left = new Vector3(-0.1f, 0);
 
-
-    // Start is called before the first frame update
     void Start()
     {
         Debug.LogWarning("Start");
@@ -23,7 +23,7 @@ public class Amoving : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
 
         // Creates velocity in direction of value equal to keypress (WASD). rb.velocity.y deals with falling + jumping by setting velocity to y. 
