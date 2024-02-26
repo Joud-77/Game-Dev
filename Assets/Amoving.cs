@@ -13,7 +13,7 @@ public class Amoving : MonoBehaviour
     Vector3 forwaed = new Vector3(0, 0, 0.1f);
     Vector3 Backwaed2 = new Vector3(0, 0, -0.1f);
     Vector3 right = new Vector3(0.1f, 0);
-    Vector3 left = new Vector3(-0.1f, 0);
+    Vector3 left = new Vector3(-0.1f, 0, 0);
 
     void Start()
     {
