@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5697942094679601977}
   m_Layer: 0
   m_Name: Enamey
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,9 +50,9 @@ MonoBehaviour:
   enemy: {fileID: 1187851759083331272}
   Player: {fileID: 0}
   time: 1
-  enemyspeed: 2
   enemyBullet: {fileID: 362422602280101157, guid: 4e813205e1d8758469db938e11c0fa10, type: 3}
   spawnPoint: {fileID: 3165535082980424838}
+  DM: {fileID: 0}
 --- !u!195 &1187851759083331272
 NavMeshAgent:
   m_ObjectHideFlags: 0

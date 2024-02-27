@@ -4,6 +4,53 @@ using UnityEngine;
 
 public class ThierdPerson : MonoBehaviour
 {
+    Transform playerTransform;
+    Vector3 cameraRotation;
+    float initialCamera;
+    float mouseSensitivity = 1;
+
+    void Start()
+    {
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        Debug.Log(playerTransform.gameObject.name);
+        initialCamera = Vector3.Distance(transform.position, playerTransform.position);
+        cameraRotation = transform.rotation.eulerAngles;
+    }
+
+
+    void LateUpdate()
+    {
+        if (playerTransform)
+        {
+            float mouseX = Input.GetAxis("Mouse X");
+
+            if (mouseX != 0)
+            {
+                cameraRotation.y += mouseX * mouseSensitivity;
+
+            }
+
+            transform.eulerAngles = cameraRotation;
+            Vector3 cameraLookDirection = Quaternion.Euler(cameraRotation) * Vector3.forward;
+            transform.position = -cameraLookDirection * initialCamera + playerTransform.position;
+
+
+        }
+    }
+
+    void OnEnable()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void OnDisable()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+}
+
+
+/*
     [SerializeField]
     private float _mouseSensitivity = 3.0f;
 
@@ -44,6 +91,4 @@ public class ThierdPerson : MonoBehaviour
 
         // Substract forward vector of the GameObject to point its forward vector to the target
         transform.position = _target.position - transform.forward * _distanceFromTarget;
-    }
-
-}
+    */

@@ -13,15 +13,15 @@ public class PlayerControll : MonoBehaviour
     private float _rotationSpeed = 10f;
 
     [SerializeField]
-    private Camera _followCamera;
+    private Transform _followCamera;
 
     private Vector3 _playerVelocity;
     private bool _groundedPlayer;
 
     [SerializeField]
-    private float _jumpHeight = 1.0f;
+    private float _jumpHeight = 5.0f;
     [SerializeField]
-    private float _gravityValue = -9.81f;
+    private float _gravityValue = 1.81f;
 
     private void Start()
     {
@@ -44,7 +44,8 @@ public class PlayerControll : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movementInput = Quaternion.Euler(0, _followCamera.transform.eulerAngles.y, 0) * new Vector3(horizontalInput, 0, verticalInput);
+        // Quaternion.Euler(0, _followCamera.eulerAngles.y, 0) *
+        Vector3 movementInput = new Vector3(horizontalInput, 0, verticalInput);
         Vector3 movementDirection = movementInput.normalized;
 
         _controller.Move(movementDirection * _playerSpeed * Time.deltaTime);
