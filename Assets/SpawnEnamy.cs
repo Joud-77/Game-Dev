@@ -6,7 +6,33 @@ using DG.Tweening;
 
 public class SpawnEnamy : MonoBehaviour
 {
-    public GameObject enmey;
+    Enemy[] enmies;
+    // Start is called before the first frame update
+    void Awake()
+    {
+        //GameObject.FindGameObjectsWithTag("Shootable", );
+        enmies = FindObjectsByType<Enemy>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+    }
+    private void OnTriggerEnter(Collider Target)
+    {
+        if (Target.gameObject.tag == "Player")
+        {
+            Debug.Log("player Enter");
+            var seq = DOTween.Sequence();
+            foreach (Enemy enemy in enmies)
+            {
+                var pos = enemy.transform.position;
+                pos.y = -1.81f;
+                seq.Append(enemy.transform.DOMove(pos, 5).SetEase(Ease.OutCubic));
+                enemy.gameObject.SetActive(true);
+            }
+        }
+    }
+}
+
+
+/*
+   public GameObject enmey;
     public Transform enemPoint;
     public float repeatRate = 5;
     // Start is called before the first frame update
@@ -27,7 +53,5 @@ public class SpawnEnamy : MonoBehaviour
     {
         var e = Instantiate(enmey);
         Destroy(e, 11);
-    }
-
-
-}
+   
+ }*/
