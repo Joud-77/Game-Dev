@@ -8,6 +8,9 @@ public class ThierdPerson : MonoBehaviour
     Vector3 cameraRotation;
     float initialCamera;
     float mouseSensitivity = 1;
+    public float speed;
+    public float rotationSpeed;
+    private Vector3 movementDirection;
 
     void Start()
     {
@@ -20,6 +23,14 @@ public class ThierdPerson : MonoBehaviour
 
     void LateUpdate()
     {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        movementDirection = new Vector3(horizontalInput, 0, verticalInput);
+        movementDirection.Normalize();
+
+        transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
+
         if (playerTransform)
         {
             float mouseX = Input.GetAxis("Mouse X");
@@ -29,10 +40,17 @@ public class ThierdPerson : MonoBehaviour
                 cameraRotation.y += mouseX * mouseSensitivity;
 
             }
+            if (movementDirection != Vector3.zero)
+            {
+                Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            }
 
             transform.eulerAngles = cameraRotation;
             Vector3 cameraLookDirection = Quaternion.Euler(cameraRotation) * Vector3.forward;
             transform.position = -cameraLookDirection * initialCamera + playerTransform.position;
+
+
 
 
         }
@@ -91,4 +109,9 @@ public class ThierdPerson : MonoBehaviour
 
         // Substract forward vector of the GameObject to point its forward vector to the target
         transform.position = _target.position - transform.forward * _distanceFromTarget;
+
+
+        Vector3 rot = playerTransform.rotation.eulerAngles;
+            rot.y = cameraRotation.y;
+            playerTransform.eulerAngles = rot;
     */

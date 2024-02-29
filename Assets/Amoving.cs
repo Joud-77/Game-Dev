@@ -7,50 +7,76 @@ using UnityEngine.UIElements.InputSystem;
 public class Amoving : MonoBehaviour
 {
 
+    private Animator anime;
+    private bool isMoving;
+    private bool isJumping;
     [SerializeField] float JumpForce = 10;
-    public Rigidbody jm;
+
+    public Rigidbody rbMove;
     //rigid body viloctiy 
-    Vector3 forwaed = new Vector3(0, 0, 0.1f);
-    Vector3 Backwaed2 = new Vector3(0, 0, -0.1f);
-    Vector3 right = new Vector3(0.1f, 0);
-    Vector3 left = new Vector3(-0.1f, 0, 0);
+    Vector3 forwaed = new Vector3(0, 0, 0.25f);
+    Vector3 Backwaed2 = new Vector3(0, 0, -0.25f);
+    Vector3 right = new Vector3(0.25f, 0);
+    Vector3 left = new Vector3(-0.25f, 0, 0);
 
     void Start()
     {
         Debug.LogWarning("Start");
-        jm = GetComponent<Rigidbody>();
+
+        rbMove = GetComponent<Rigidbody>();
+        anime = GetComponent<Animator>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        bool moving = false;
 
         // Creates velocity in direction of value equal to keypress (WASD). rb.velocity.y deals with falling + jumping by setting velocity to y. 
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W) && !isMoving)
         {
-            transform.position += forwaed;
+            rbMove.velocity += forwaed;
+            moving = true;
+            anime.SetBool("isMoving", true);
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S) && !isMoving)
         {
-            transform.position += Backwaed2;
+            rbMove.velocity += Backwaed2;
+            moving = true;
+            anime.SetBool("isMoving", true);
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D) && !isMoving)
         {
-            transform.position += right;
+            rbMove.velocity += right;
+            moving = true;
+            anime.SetBool("isMoving", true);
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A) && !isMoving)
         {
-            transform.position += left;
+            rbMove.velocity += left;
+            moving = true;
+            anime.SetBool("isMoving", true);
         }
         //for jumping 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) && !isJumping)
         {
-            jm.AddForce(Vector3.up * JumpForce);
+            rbMove.AddForce(Vector3.up * JumpForce);
+            moving = true;
+            anime.SetBool("isJumping", true);
         }
+        if (moving == false)
+        {
+            rbMove.velocity = new Vector3(0, rbMove.velocity.y, 0);
+            anime.SetBool("isMoving", false);
+        }
+        else
+        {
+            transform.rotation = Quaternion.LookRotation(rbMove.velocity);
+        }
+
+
     }
-
-
 }
 
 
