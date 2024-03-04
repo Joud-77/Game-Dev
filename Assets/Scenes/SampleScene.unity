@@ -3967,11 +3967,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4283527512771772, guid: e332982425ee2ec48b168979bb7b43f5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.11
+      value: -4.12
       objectReference: {fileID: 0}
     - target: {fileID: 4283527512771772, guid: e332982425ee2ec48b168979bb7b43f5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.880001
+      value: -5.59
       objectReference: {fileID: 0}
     - target: {fileID: 4283527512771772, guid: e332982425ee2ec48b168979bb7b43f5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4033,7 +4033,10 @@ PrefabInstance:
       addedObject: {fileID: 998347554}
     - targetCorrespondingSourceObject: {fileID: 1849736199912346, guid: e332982425ee2ec48b168979bb7b43f5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 998347557}
+      addedObject: {fileID: 998347560}
+    - targetCorrespondingSourceObject: {fileID: 1849736199912346, guid: e332982425ee2ec48b168979bb7b43f5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 998347561}
   m_SourcePrefab: {fileID: 100100000, guid: e332982425ee2ec48b168979bb7b43f5, type: 3}
 --- !u!4 &475602079 stripped
 Transform:
@@ -8495,6 +8498,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16697396023b0446bf7259fc54d9f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
+  rotationSpeed: 0
 --- !u!1001 &970940575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8819,7 +8824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpForce: 300
-  jm: {fileID: 998347537}
+  rbMove: {fileID: 998347537}
 --- !u!114 &998347551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8848,9 +8853,9 @@ MonoBehaviour:
   _playerSpeed: 20
   _rotationSpeed: 10
   _followCamera: {fileID: 963194228}
-  _jumpHeight: 1
+  _jumpHeight: 20
   _gravityValue: -9.81
---- !u!143 &998347557
+--- !u!143 &998347560
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8876,6 +8881,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &998347561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164627396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125380dedcdf3d743b28e672d6e0f231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &998609160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4914818815454766, guid: 160a6121b4d25254da31bdab63ad82b7, type: 3}
