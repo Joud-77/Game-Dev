@@ -21,9 +21,9 @@ public class SpawnEnamy : MonoBehaviour
             var seq = DOTween.Sequence();
             foreach (Enemy enemy in enmies)
             {
-                var pos = enemy.transform.position;
-                pos.y = -1.81f;
-                seq.Append(enemy.transform.DOMove(pos, 5).SetEase(Ease.OutCubic));
+                // var pos = enemy.transform.position;
+                // pos.y = -1.81f;
+                // seq.Append(enemy.transform.DOMove(pos, 5).SetEase(Ease.OutCubic));
                 enemy.gameObject.SetActive(true);
             }
         }
@@ -53,5 +53,9 @@ public class SpawnEnamy : MonoBehaviour
     {
         var e = Instantiate(enmey);
         Destroy(e, 11);
+
+        var pos = enemy.transform.position;
+                pos.y = -1.81f;
+                seq.Append(enemy.transform.DOMove(pos, 5).SetEase(Ease.OutCubic));
    
  }*/
