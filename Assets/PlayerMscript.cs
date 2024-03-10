@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine.Utility;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,22 +12,11 @@ public class PlayerMscript : MonoBehaviour
     private PlayerAction playerAction;
     private Rigidbody rigi;
     private Vector2 isMoveing;
+    private Rigidbody rot;
 
     [SerializeField]
     private float jumpForce = 20f;
 
-    private void Update()
-    {
-        if (playerAction.GamePlaye.Jump.WasPerformedThisFrame())
-        {
-            rigi.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            anime.SetBool("isJumping", true);
-        }
-        else
-        {
-            anime.SetBool("isJumping", false);
-        }
-    }
     private void Awake()
     {
         playerAction = new PlayerAction();
@@ -40,6 +30,29 @@ public class PlayerMscript : MonoBehaviour
 
     }
 
+
+
+    void Start()
+    {
+        anime = GetComponent<Animator>();
+        rigi = GetComponent<Rigidbody>();
+    }
+    private void Update()
+    {
+        if (playerAction.GamePlaye.Jump.WasPerformedThisFrame())
+        {
+            rigi.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            anime.SetBool("isJumping", true);
+        }
+        else
+        {
+            anime.SetBool("isJumping", false);
+        }
+
+
+    }
+
+
     private void OnEnable()
     {
         playerAction.GamePlaye.Enable();
@@ -49,11 +62,7 @@ public class PlayerMscript : MonoBehaviour
     {
         playerAction.GamePlaye.Disable();
     }
-    void Start()
-    {
-        anime = GetComponent<Animator>();
-        rigi = GetComponent<Rigidbody>();
-    }
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -61,8 +70,11 @@ public class PlayerMscript : MonoBehaviour
         isMoveing = playerAction.GamePlaye.move.ReadValue<Vector2>();
         rigi.velocity = new Vector3(isMoveing.x * Speed, rigi.velocity.y, isMoveing.y * Speed);
         anime.SetBool("isMoving", isMoveing != Vector2.zero);
+        //transform.rotation = Quaternion.LookRotation(rigi.velocity);
+
         transform.rotation = Quaternion.LookRotation(rigi.velocity);
 
-
     }
+
+
 }
